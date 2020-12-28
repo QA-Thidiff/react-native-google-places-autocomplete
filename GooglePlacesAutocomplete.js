@@ -192,22 +192,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     getCurrentPosition &&
       getCurrentPosition(
         (position) => {
-          if (props.nearbyPlacesAPI === 'None') {
-            let currentLocation = {
-              description: props.currentLocationLabel,
-              geometry: {
-                location: {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-                },
-              },
-            };
-
-            _disableRowLoaders();
-            props.onPress(currentLocation, currentLocation);
-          } else {
-            _requestNearby(position.coords.latitude, position.coords.longitude);
-          }
+          props.currentPlace();
         },
         (error) => {
           _disableRowLoaders();
